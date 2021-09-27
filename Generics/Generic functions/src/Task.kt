@@ -1,6 +1,12 @@
 import java.util.*
+import java.util.function.BiPredicate
 
-fun partitionTo() = TODO()
+fun <T, C: MutableCollection<T>> Collection<T>.partitionTo(listA: C, listB: C, predicate: (T) -> Boolean) : Pair<C,C>
+{
+    this.partition(predicate).first.toCollection(listA)
+    this.partition(predicate).second.toCollection(listB)
+    return Pair(listA, listB)
+}
 
 fun partitionWordsAndLines() {
     val (words, lines) = listOf("a", "a b", "c", "d e")
